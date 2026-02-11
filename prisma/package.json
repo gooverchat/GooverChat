@@ -1,0 +1,7 @@
+{
+  "name": "prisma-config",
+  "private": true,
+  "scripts": {
+    "postinstall": "echo Skipping prisma generate in prisma folder"
+  }
+}

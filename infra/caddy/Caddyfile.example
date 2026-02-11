@@ -1,0 +1,7 @@
+# Caddy – Mode 2: Domain + HTTPS
+# Copy to /etc/caddy/Caddyfile (or your Caddy config) and replace the domain.
+# Caddy will obtain and renew a Let's Encrypt certificate automatically.
+
+gooverchat.yourdomain.com {
+    reverse_proxy localhost:3000
+}
