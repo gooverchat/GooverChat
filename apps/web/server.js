@@ -4,11 +4,11 @@ const next = require('next');
 const { setupSocketServer } = require('./src/lib/socket/server');
 
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = process.env.HOSTNAME || 'localhost';
-const port = parseInt(process.env.PORT || process.env.SERVER_PORT || '3000', 10);
+const port = Number(process.env.PORT || process.env.SERVER_PORT || 3000);
+const host = process.env.HOSTNAME || '0.0.0.0';
 
 async function start() {
-  const app = next({ dev, hostname, port });
+  const app = next({ dev, hostname: host, port });
   const handle = app.getRequestHandler();
   await app.prepare();
 
@@ -25,8 +25,8 @@ async function start() {
 
   setupSocketServer(server);
 
-  server.listen(port, () => {
-    console.log(`> Ready on http://${hostname}:${port}`);
+  server.listen(port, host, () => {
+    console.log(`> Ready on http://${host}:${port}`);
   });
 }
 
